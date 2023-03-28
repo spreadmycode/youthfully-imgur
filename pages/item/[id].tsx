@@ -1,9 +1,10 @@
+import { useEffect, useState } from "react";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import Image from "next/image";
 import Loading from "@/components/Loading";
 import { ImgurItem } from "@/interfaces/ImgurItem";
 import { fetchItem } from "@/libs/utils";
-import Image from "next/image";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
 
 function ItemPage() {
   const router = useRouter();
@@ -30,10 +31,17 @@ function ItemPage() {
           setIsLoading(false);
         });
     }
-  }, [id]);
+  }, [id, router]);
 
   return (
     <div className="relative container mx-auto my-4 px-5">
+      <Head>
+        <title>Imgur Gallery</title>
+        <meta name="description" content="Imgur Gallery" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className="w-full h-16 flex justify-start items-center px-10">
         <svg
           onClick={() => router.push("/")}

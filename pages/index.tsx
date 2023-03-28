@@ -1,10 +1,11 @@
+import Head from "next/head";
+import { useEffect, useState } from "react";
 import ImgurCard from "@/components/ImgurCard";
 import Loading from "@/components/Loading";
 import Select from "@/components/Select";
 import { ImgurItem } from "@/interfaces/ImgurItem";
 import { SECTIONS, SORTS, WINDOWS } from "@/libs/constants";
 import { fetchData } from "@/libs/utils";
-import { useEffect, useState } from "react";
 
 function IndexPage() {
   const [section, setSection] = useState<string>("hot");
@@ -55,6 +56,8 @@ function IndexPage() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -75,6 +78,13 @@ function IndexPage() {
 
   return (
     <div className="relative container mx-auto my-4 px-5">
+      <Head>
+        <title>Imgur Gallery</title>
+        <meta name="description" content="Imgur Gallery" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className="flex flex-wrap justify-center items-center gap-5 p-5 mb-10 border-b border-gray-200">
         <Select
           label="Section"
